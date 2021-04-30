@@ -55,12 +55,7 @@ We identified individual song characteristics (for example, valence, duration, d
 * [Ivana folder](https://github.com/reccleston/song-recomendations/tree/main/ivana)
 
 
-# Models Used:
+# Classification Models Used:
+* Logistic Classification
+* Support Vector Machine (SVM)
 
-## Logistics regression  
-To predict if a given song will remain 
-Hyper-normalize - multi-layer kernel
-
-## Classification - SVM
-To create bins for songs to be in the top 100 Billboard songs
-Regular normalize (MinMaxScale(), etc.)
