@@ -44,9 +44,9 @@ We were inspired to continue working with the music industry in general and rela
 
 We used the top songs 2020 dataset in combination with scraping of the top 100 weekly Billboard lists, and  calls to the Spotify API to compile a CSV containing both ‘Hit’ and ‘Non-Hit’ songs between 2018 and 2021. We will train this dataset using machine learning models to predict the top genre(s) and artist(s) likely to appear in the weekly Billboard top 100 for 2021. 
 
-We identified individual song characteristics (for example, valence, duration, danceability, release location, etc.) and used these defining attributes of ‘Hit’ songs to forecast the following week’s top 100 Billboard songs. 
+We identified individual song characteristics (for example, how long a song has been on the chart, its peak position, etc.) and used these defining attributes of ‘Hit’ songs to forecast the following week’s top 100 Billboard songs. 
 
-# Folders Directory
+# Folders Directory:
 * [Wasif Folder](https://github.com/reccleston/song-recomendations/tree/main/wasif)
 * [Angeli folder](https://github.com/reccleston/song-recomendations/tree/main/angeli) 
 * [Jini folder](https://github.com/reccleston/song-recomendations/tree/main/jini)
