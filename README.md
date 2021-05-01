@@ -49,7 +49,7 @@ We identified individual song characteristics (for example, how long a song has 
 
 # Initial Hypothesis & Learnings
 
-Continuing off our [last project](https://github.com/reccleston/music-project) , our initial assumption was that the attributes of the songs directly correlated with the popularity of the song, and essentially, whether that song would be on the Billboard chart. These attributes are listed above. However from our initial analysis in Tableau, we saw that many of the top songs that had a high danceability value were not classified as “hit songs.” This showed us that the attributes did not correlate to popularity as we initially hypothesized - we confirmed this by running a _____ model to show the importance of each feature, pictured below:
+Continuing off our [last project](https://github.com/reccleston/music-project) , our initial assumption was that the attributes of the songs directly correlated with the popularity of the song, and essentially, whether that song would be on the Billboard chart. These attributes are listed above. However from our initial analysis in Tableau, we saw that many of the top songs that had a high danceability value were not classified as “hit songs.” This showed us that the attributes did not correlate to popularity as we initially hypothesized - we confirmed this by running a ____ model to show the importance of each feature, pictured below:
 
 
 ![Song_Story](angeli/Song_Story.png)
