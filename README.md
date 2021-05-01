@@ -52,8 +52,6 @@ We identified individual song characteristics (for example, how long a song has 
 Continuing off our [last project](https://github.com/reccleston/music-project) , our initial assumption was that the attributes of the songs directly correlated with the popularity of the song, and essentially, whether that song would be on the Billboard chart. These attributes are listed above. However from our initial analysis in Tableau, we saw that many of the top songs that had a high danceability value were not classified as “hit songs.” This showed us that the attributes did not correlate to popularity as we initially hypothesized - we confirmed this by running a _____ model to show the importance of each feature, pictured below:
 
 
-![Features](ryan/image.png)
-
 ![Song_Story](angeli/Song_Story.png)
 
 This led us to pivot our inputs for our machine learning models to include more insightful information like the attributes listed in the [Billboard dataset](BB_Final.csv). Some examples of these new attributes are:
@@ -61,6 +59,9 @@ Chart position of test data
 Previous position of test data
 Numbers of weeks on the billboard chart
 Peak position on the billboard chart
+
+
+![Features](ryan/image.png)
 
 # Classification Models Used:
 * Logistic Classification
