@@ -46,6 +46,28 @@ We used the top songs 2020 dataset in combination with scraping of the top 100 w
 
 We identified individual song characteristics (for example, how long a song has been on the chart, its peak position, etc.) and used these defining attributes of ‘Hit’ songs to forecast the following week’s top 100 Billboard songs. 
 
+
+# Initial Hypothesis & Learnings
+
+Continuing off our [last project](https://github.com/reccleston/music-project) , our initial assumption was that the attributes of the songs directly correlated with the popularity of the song, and essentially, whether that song would be on the Billboard chart. These attributes are listed above. However from our initial analysis in Tableau, we saw that many of the top songs that had a high danceability value were not classified as “hit songs.” This showed us that the attributes did not correlate to popularity as we initially hypothesized - we confirmed this by running a _____ model to show the importance of each feature, pictured below:
+
+
+[Feature importance PNG here]
+
+[tableau visualization here]
+
+This led us to pivot our inputs for our machine learning models to include more insightful information like the attributes listed in the [Billboard dataset](BB_Final.csv). Some examples of these new attributes are:
+Chart position of test data
+Previous position of test data
+Numbers of weeks on the billboard chart
+Peak position on the billboard chart
+
+# Classification Models Used:
+* Logistic Classification
+* Support Vector Machine (SVM)
+
+# Key Takewaways
+
 # Folders Directory:
 * [Wasif Folder](https://github.com/reccleston/song-recomendations/tree/main/wasif)
 * [Angeli folder](https://github.com/reccleston/song-recomendations/tree/main/angeli) 
@@ -54,8 +76,4 @@ We identified individual song characteristics (for example, how long a song has 
 * [Sarah folder](https://github.com/reccleston/song-recomendations/tree/main/sarah) 
 * [Ivana folder](https://github.com/reccleston/song-recomendations/tree/main/ivana)
 
-
-# Classification Models Used:
-* Logistic Classification
-* Support Vector Machine (SVM)
 
