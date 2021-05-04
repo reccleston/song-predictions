@@ -89,6 +89,9 @@ Using these models we've attained a **98% accuracy** in predicting whether a son
 ![SVM-2](images/SVM2.png)
 *Fig. 5 & 6: Support Vector Model*
 
+![SVM-plot](images/SVM_plot.png)
+*Fig. 7: Dimensionally reduced data plotted alongside separating hyperplane*
+
 
 # Folders Directory:
 * [Wasif Folder](https://github.com/reccleston/song-recomendations/tree/main/wasif)
