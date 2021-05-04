@@ -53,11 +53,11 @@ Continuing off our [last project](https://github.com/reccleston/music-project) ,
 
 
 ![Song_Story](angeli/Song_Story.png)
-*Fig 1: Top Songs Barchart*
+*Fig. 1: Top Songs Barchart showed that Top Danceable Songs were not Hits*
 
 
 ![Features](ryan/image.png)
-*Fig 2: Feature Importance Barchart*
+*Fig. 2: Feature Importance Barchart showed stronger importance in Billboard Attributes*
 
 This led us to pivot our inputs for our machine learning models to include more insightful information like the attributes listed in the [Billboard dataset](BB_Final.csv). Some examples of these new attributes are:
 Chart position of test data
@@ -72,6 +72,17 @@ Peak position on the billboard chart
 * Random Forest Classifer
 
 # Key Takewaways
+
+![Logistic Regression](images/logisticregression.png)
+*Fig. 3: Logistic Regression Model*
+
+![Random Forest](images/randomforest.png)
+*Fig. 4: Random Forest Classifier*
+
+![SVM-1](images/SVM1.png)
+![SVM-2](images/SVM2.png)
+*Fig. 5 & 6: Support Vector Model*
+
 
 # Folders Directory:
 * [Wasif Folder](https://github.com/reccleston/song-recomendations/tree/main/wasif)
