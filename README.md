@@ -73,11 +73,11 @@ Peak position on the billboard chart
 
 # Key Takewaways
 
-* High accuracy rate in models do not necessarily deem it as a good classification model. 
+* Machine Learning requires large ammounts of data to train on... which can be time consuming.
+* High Accuracy Rate in models do not necessarily deem it as a good classification model. 
 * Addition of more *"Human Features"* (such as Chart Position, Previous Chart Position, Song Peak, Number of Weeks on Billboard Chart) significantly influenced the model's performance. 
-* 
 
-Using these models we've attained a 98% accuracy in predicting whether a song will be a Hit song in the next time period. 
+Using these models we've attained a **98% accuracy** in predicting whether a song will be a Hit song in the next time period. 
 
 ![Logistic Regression](images/logisticregression.png)
 *Fig. 3: Logistic Regression Model*
