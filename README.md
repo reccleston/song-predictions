@@ -53,6 +53,11 @@ Continuing off our [last project](https://github.com/reccleston/music-project) ,
 
 
 ![Song_Story](angeli/Song_Story.png)
+*Fig 1: Top Songs Barchart*
+
+
+![Features](ryan/image.png)
+*Fig 2: Feature Importance Barchart*
 
 This led us to pivot our inputs for our machine learning models to include more insightful information like the attributes listed in the [Billboard dataset](BB_Final.csv). Some examples of these new attributes are:
 Chart position of test data
@@ -60,8 +65,6 @@ Previous position of test data
 Numbers of weeks on the billboard chart
 Peak position on the billboard chart
 
-
-![Features](ryan/image.png)
 
 # Classification Models Used:
 * Logistic Classification
