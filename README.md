@@ -67,7 +67,7 @@ Peak position on the billboard chart
 
 
 # Classification Models Used:
-* Logistic Classification
+* Logistic Regression Classification
 * Support Vector Machine (SVM)
 * Random Forest Classifer
 
