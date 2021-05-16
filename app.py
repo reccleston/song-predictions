@@ -4,21 +4,41 @@ from dotenv import load_dotenv
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
-from sqlalchemy import create_engine, func
+from sqlalchemy import create_engine, inspect
 
-from flask import Flask
+from flask import Flask, jsonify
 
 load_dotenv('.env')
 POSTGRES_ID = os.getenv('POSTGRES_ID')
 POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD')
 
-engine = create_engine(f'{POSTGRES_ID}://{POSTGRES_PASSWORD}:postgres@localhost:5432/billboard_songs')
+engine = create_engine(f'{POSTGRES_ID}://{POSTGRES_PASSWORD}:postgres@localhost:5432/billboard_songs', echo=False)
 
 Base = automap_base()
 Base.prepare(engine, reflect=True)
+
+# print(engine.table_names())
+connection = engine.connect()
+
+# inspector = inspect(engine)
+# print(inspector.get_table_names())
+
+# print(Base.classes.keys())
+
+
+# TopSongs = Base.classes.songs
+# Dates = Base.classes.dates
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return 0
+    TopSongs = connection.execute("""SELECT * FROM songs;""")
+    # Dates = connection.execute("""SELECT * FROM dates;""")
+
+    # dont forgoet to start/end session
+    return jsonify(result)
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
