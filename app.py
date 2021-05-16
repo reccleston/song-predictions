@@ -34,10 +34,20 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     TopSongs = connection.execute("""SELECT * FROM songs;""")
+    data = []
+    for song in TopSongs:
+        print(song)
+        data.append({'song': song[0],
+                     'performer': song[1],
+                     'chart_position': song[2],
+                     'previous_postion': song[3],
+                     'peak': song[4],
+                     'weeks_on_chart': song[5],
+                     'danceability': song[8]})
     # Dates = connection.execute("""SELECT * FROM dates;""")
 
     # dont forgoet to start/end session
-    return jsonify(result)
+    return jsonify(data)
 
 
 if __name__ == "__main__":
