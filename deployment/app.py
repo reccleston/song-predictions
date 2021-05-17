@@ -27,6 +27,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
+    return render_template('index.html')
+    
+@app.route('/billboard_songs')
+def songs():
     TopSongs = connection.execute("""SELECT * FROM songs;""")
     data = []
     for song in TopSongs:
