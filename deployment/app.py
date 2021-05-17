@@ -10,6 +10,8 @@ import pickle
 
 from flask import Flask, jsonify, render_template
 
+
+
 load_dotenv('.env')
 POSTGRES_ID = os.getenv('POSTGRES_ID')
 POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD')
@@ -32,31 +34,13 @@ def home():
 @app.route('/billboard_songs')
 def songs():
     TopSongs = connection.execute("""SELECT * FROM songs;""")
-    data = []
+    song_titles = []
     for song in TopSongs:
-        data.append({'song': song[0],
-                     'performer': song[1],
-                     'chart_position': song[2],
-                     'previous_postion': song[3],
-                     'peak': song[4],
-                     'weeks_on_chart': song[5],
-                     'danceability': song[8],
-                     'engery': song[9],
-                     'key': song[10],
-                     'loudness': song[11],
-                     'mode': song[12],
-                     'speechiness': song[13],
-                     'acousticness': song[14],
-                     'instrumentalness': song[15],
-                     'liveness': song[16],
-                     'valence': song[17],
-                     'tempo': song[18],
-                     'duration_ms': song[19],
-                     'time_signature': song[20]})
+        song_titles.append(song[0])
 
     # Dates = connection.execute("""SELECT * FROM dates;""")
     # dont forgoet to start/end session
-    return jsonify(data)
+    return jsonify(song_titles)
 
 # check if song is already in the top list 
 # if not call spotify api to gather the songs audio features 

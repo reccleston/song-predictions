@@ -43,12 +43,12 @@
               aria-describedby="search-addon" />
             <button type="button" class="btn btn-outline-primary">search</button>
         </div> -->
-        <form autocomplete="off" action="/action_page.php" action="{{ url_for('predict')}}"method="post">
+        <form autocomplete="off" action="/action_page.php">
             <div class="autocomplete" style="width:300px;">
               <input class="form-control rounded" placeholder="Search" aria-label="Search" 
               id="myInput" type="text" name="myCountry">
-              <input class="form-control rounded" placeholder="Search" aria-label="Search" 
-              id="myInput" type="submit" name="myCountry" formaction="{{ url_for('predict')}}"method="post">
+              <!-- <input class="form-control rounded" placeholder="Search" aria-label="Search" 
+              id="myInput" type="submit" name="myCountry"> -->
             </div>
             <input type="submit">
           </form>
@@ -89,7 +89,7 @@
     <script src="{{ url_for('static', filename='js/inputAutocomplete.js') }}"></script>
 
     <script>
-        autocomplete(document.getElementById("myInput"), countries);
+        autocomplete(document.getElementById("myInput"), songs);
     </script>
 
 
