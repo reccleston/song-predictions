@@ -7,8 +7,8 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, inspect
 import pickle
-from get_audio_features import get_features, get_song_uri 
-
+from get_audio_features import get_features
+from massageData import getInfo
 from flask import Flask, jsonify, render_template, request
 
 
@@ -28,19 +28,18 @@ model = pickle.load(open('models/LogRegW2021.sav','rb'))
 
 app = Flask(__name__)
 
+TopSongs = connection.execute("""SELECT * FROM songs;""")
+song_titles = []
+
 @app.route('/')
 def home():
     return render_template('index.html')
     
 @app.route('/billboard_songs')
 def songs():
-    TopSongs = connection.execute("""SELECT * FROM songs;""")
-    song_titles = []
     for song in TopSongs:
         song_titles.append(song[0])
 
-    # Dates = connection.execute("""SELECT * FROM dates;""")
-    # dont forgoet to start/end session
     return jsonify(song_titles)
 
 @app.route('/predict', methods=['POST'])
@@ -49,12 +48,16 @@ def predict():
 
     pred = np.nan
 
-    for m in request.form.values():
-        pred = get_features(get_song_uri(m))
+    for song_title in request.form.values():
+        if song_title in song_titles:
+            song_info = getInfo(song_title, TopSongs)
+            return render_template('index.html', prediction='ITS A HIT!')
+        else:
+            pred = get_features(song_title)
     
     # massage 
+
     # predict
-    
     return render_template('index.html', prediction=pred)
 
 
