@@ -1,13 +1,14 @@
 import os
 from dotenv import load_dotenv
 
+import numpy as np
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, inspect
 import pickle
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 
 load_dotenv('.env')
 POSTGRES_ID = os.getenv('POSTGRES_ID')
@@ -18,19 +19,9 @@ engine = create_engine(f'{POSTGRES_ID}://{POSTGRES_PASSWORD}:postgres@localhost:
 Base = automap_base()
 Base.prepare(engine, reflect=True)
 
-# print(engine.table_names())
 connection = engine.connect()
 
 model = pickle.load(open('models/LogRegW2021.sav','rb'))
-
-# inspector = inspect(engine)
-# print(inspector.get_table_names())
-
-# print(Base.classes.keys())
-
-
-# TopSongs = Base.classes.songs
-# Dates = Base.classes.dates
 
 app = Flask(__name__)
 
@@ -60,10 +51,12 @@ def home():
                      'time_signature': song[20]})
 
     # Dates = connection.execute("""SELECT * FROM dates;""")
-
     # dont forgoet to start/end session
     return jsonify(data)
 
+# check if song is already in the top list 
+# if not call spotify api to gather the songs audio features 
+#     then massage this new data point into the shape needed to be run through the model 
 
 if __name__ == "__main__":
     app.run(debug=True)
