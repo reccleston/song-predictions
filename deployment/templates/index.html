@@ -43,15 +43,26 @@
               aria-describedby="search-addon" />
             <button type="button" class="btn btn-outline-primary">search</button>
         </div> -->
-        <form autocomplete="off" action="/action_page.php">
+        <br>
+        <!-- <form action="{{ url_for('predict')}}"method="post">
+            <input type="text" name="rate" placeholder="rate" required="required" />
+            <input type="text" name="sales in first month" placeholder="sales in first month" required="required" />
+            <input type="text" name="sales in second month" placeholder="sales in second month" required="required" />
+            <button type="submit" class="btn btn-primary btn-block btn-large">Predict sales in third month</button>
+        </form> -->
+
+        <!-- <form autocomplete="off" action="/action_page.php"> -->
+        <form action="{{ url_for('predict')}}" method="post">
+
             <div class="autocomplete" style="width:300px;">
               <input class="form-control rounded" placeholder="Song - Artist" aria-label="Search" 
-              id="myInput" type="text" name="myCountry">
+              id="myInput" type="text" name="songTitle">
               <!-- <input class="form-control rounded" placeholder="Search" aria-label="Search" 
               id="myInput" type="submit" name="myCountry"> -->
             </div>
-            <input type="submit">
-          </form>
+            <!-- <buttoninp type="submit" ></button>           -->
+            <input type="submit" class="btn" formaction="{{ url_for('predict') }}" method="post">
+        </form>
     </div>
 
 

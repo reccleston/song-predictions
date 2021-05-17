@@ -7,9 +7,9 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, inspect
 import pickle
-from get_audio_features import get_features 
+from get_audio_features import get_features, get_song_uri 
 
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 
 
 
@@ -43,8 +43,17 @@ def songs():
     # dont forgoet to start/end session
     return jsonify(song_titles)
 
-@app.route('/predict')
+@app.route('/predict', methods=['POST'])
 def predict():
+    # test_features = get_features()
+
+    pred = np.nan
+
+    for m in request.form.values():
+        pred = get_features(get_song_uri(m))
+    
+    # massage 
+    # predict
     
     return render_template('index.html', prediction=pred)
 
