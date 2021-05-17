@@ -7,6 +7,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, inspect
 import pickle
+from get_audio_features import get_features 
 
 from flask import Flask, jsonify, render_template
 
@@ -41,6 +42,12 @@ def songs():
     # Dates = connection.execute("""SELECT * FROM dates;""")
     # dont forgoet to start/end session
     return jsonify(song_titles)
+
+@app.route('/predict')
+def predict():
+    
+    return render_template('index.html', prediction=pred)
+
 
 # check if song is already in the top list 
 # if not call spotify api to gather the songs audio features 

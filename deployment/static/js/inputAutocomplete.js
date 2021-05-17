@@ -3,7 +3,6 @@ songs = [];
 d3.json('/billboard_songs').then(titles => titles.forEach(song => songs.push(song)));
 
 function autocomplete(inp, arr) {
-  console.log(arr);
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
   var currentFocus;
