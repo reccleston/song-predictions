@@ -7,8 +7,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, inspect
 import pickle
-from get_audio_features import get_features
-from massageData import getInfo
+from auxFunctions import *
 from flask import Flask, jsonify, render_template, request
 
 
@@ -29,7 +28,21 @@ model = pickle.load(open('models/LogRegW2021.sav','rb'))
 app = Flask(__name__)
 
 TopSongs = connection.execute("""SELECT * FROM songs;""")
-song_titles = []
+
+column_names = connection.execute("""SELECT *
+  FROM information_schema.columns
+ WHERE table_schema = 'public'
+   AND table_name   = 'songs'
+     ;""")
+
+# @TODO:
+# # SELECT ALL BUT SONG, ARTIST, ID, COLS FOR MATCHED SONGS TO BE PUT THROUGH
+# # ADDING 0'S TO NEW DATA POINTS 
+# # USING/ APPLIYING MODEL
+# # PRETTIFY FRONT PIECE 
+
+song_list = []
+
 
 @app.route('/')
 def home():
@@ -38,9 +51,9 @@ def home():
 @app.route('/billboard_songs')
 def songs():
     for song in TopSongs:
-        song_titles.append(song[0])
+        song_list.append(song[0])
 
-    return jsonify(song_titles)
+    return jsonify(song_list)
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -48,12 +61,18 @@ def predict():
 
     pred = np.nan
 
-    for song_title in request.form.values():
-        if song_title in song_titles:
-            song_info = getInfo(song_title, TopSongs)
+    for users_input_song in request.form.values():
+        if users_input_song in song_list:
+            # get other cols of data to for model 
+            # song_info = connection.execute("""SELECT * EXCEPT song, performer, id FROM songs;""")
+            song_info = getInfo(users_input_song, TopSongs)
+            # for m in song_info:
+            #     print(m)
             return render_template('index.html', prediction='ITS A HIT!')
         else:
-            pred = get_features(song_title)
+            features = get_features(users_input_song)
+            prediction_pt = makeTestPoint(features)
+
     
     # massage 
 
