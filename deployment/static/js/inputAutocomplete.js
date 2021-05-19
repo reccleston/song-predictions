@@ -1,7 +1,10 @@
+
+
 songs = [];
 
 d3.json('/billboard_songs').then(titles => titles.forEach(song => songs.push(song)));
-
+// var trial = '';
+var externalValue;
 function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
@@ -45,6 +48,7 @@ function autocomplete(inp, arr) {
   /*execute a function presses a key on the keyboard:*/
   inp.addEventListener("keydown", function(e) {
       var x = document.getElementById(this.id + "autocomplete-list");
+      var test = document.getElementById(this.id);
       if (x) x = x.getElementsByTagName("div");
       if (e.keyCode == 40) {
         /*If the arrow DOWN key is pressed,
@@ -61,6 +65,27 @@ function autocomplete(inp, arr) {
       } else if (e.keyCode == 13) {
         /*If the ENTER key is pressed, prevent the form from being submitted,*/
         e.preventDefault();
+        // !!!! Sarah test code: get value of what was currently chosen from dropdown
+      
+        // if there is a current focus and the array of autofills exists...
+        if (currentFocus > -1 & x != null) {
+          console.log('if statement runs')
+          // select what is in the current focus, since that is what the user is selecting
+          trial = d3.select(x[currentFocus]).select('input').attr('value');
+          console.log('trial');
+          console.log(trial);
+          // save that value externally
+          externalValue = trial;
+        }
+        // where the autofill isn't selected and there is no array
+        // for example, if the song name isn't on the autofill
+        // or if you're double clicking from the array
+        else {
+          console.log('else statement');
+          console.log('this value')
+          console.log(this.value);
+          externalValue = this.value;
+        }
         if (currentFocus > -1) {
           /*and simulate a click on the "active" item:*/
           if (x) x[currentFocus].click();
@@ -95,6 +120,24 @@ function autocomplete(inp, arr) {
 }
 /*execute a function when someone clicks in the document:*/
 document.addEventListener("click", function (e) {
-    closeAllLists(e.target);
+  closeAllLists(e.target);
 });
-}
+
+document.addEventListener("keypress", function(e) {
+  if (e.key === 'Enter') {
+    console.log('enter key was pressed somewhere on the page')
+    externalValue = document.getElementById("myInput").value;
+    console.log(externalValue)
+  }
+});
+
+
+};
+// 
+d3.select('#btnInput').on('click', function(e) {
+  event.preventDefault();
+  console.log('button was pressed')
+  externalValue = document.getElementById("myInput").value;
+  console.log(externalValue);
+});
+
