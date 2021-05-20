@@ -15,8 +15,6 @@ spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(cl
 def get_features(song):
     return spotify.audio_features(spotify.search(q=song, limit=1)['tracks']['items'][0]['uri'])[0]
 
-
-
 # def getInfo(song, SongList):
 #     print('this function runs: ', '\n', song)
 #     for m in SongList:
