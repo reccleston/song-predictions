@@ -105,7 +105,7 @@ def predict():
         else:
             print(users_input_song)
             features = get_features(users_input_song)
-            new_pt = makeTestPoint(features)
+            new_pt = makeNewPoint(features)
             prediction = model.predict(new_pt)
 
             print('LOOK HERE -->', prediction)
