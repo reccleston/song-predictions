@@ -7,7 +7,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, inspect
 import pickle
-from auxFunctions import *
+from auxFunctions import makeTestPoint, get_features
 from flask import Flask, jsonify, render_template, request
 
 
@@ -41,6 +41,7 @@ column_names = connection.execute("""SELECT *
 # # USING/ APPLIYING MODEL
 # # PRETTIFY FRONT PIECE 
 
+song_titles = []
 song_list = []
 data = []
 
@@ -94,7 +95,7 @@ def predict():
         if users_input_song in song_list:
             # get other cols of data to for model 
             # song_info = connection.execute("""SELECT * EXCEPT song, performer, id FROM songs;""")
-            song_info = getInfo(users_input_song, data)
+            song_info = getInfo(users_input_song, TopSongs)
             # for m in song_info:
             #     print(m)
             return render_template('index.html', prediction='ITS A HIT!')
