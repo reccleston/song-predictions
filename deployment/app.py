@@ -7,7 +7,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, inspect
 import pickle
-from auxFunctions import makeTestPoint, get_features
+from auxFunctions import makeTestPoint, get_features, getInfo
 from flask import Flask, jsonify, render_template, request
 
 
@@ -29,11 +29,11 @@ app = Flask(__name__)
 
 TopSongs = connection.execute("""SELECT * FROM songs;""")
 
-column_names = connection.execute("""SELECT *
-  FROM information_schema.columns
- WHERE table_schema = 'public'
-   AND table_name   = 'songs'
-     ;""")
+# column_names = connection.execute("""SELECT *
+#   FROM information_schema.columns
+#  WHERE table_schema = 'public'
+#    AND table_name   = 'songs'
+#      ;""")
 
 # @TODO:
 # # SELECT ALL BUT SONG, ARTIST, ID, COLS FOR MATCHED SONGS TO BE PUT THROUGH
@@ -90,19 +90,21 @@ def predict():
     # test_features = get_features()
 
     pred = np.nan
-
+    
     for users_input_song in request.form.values():
-        if users_input_song in song_list:
+        if users_input_song in song_titles:
+            print(users_input_song)
             # get other cols of data to for model 
             # song_info = connection.execute("""SELECT * EXCEPT song, performer, id FROM songs;""")
-            song_info = getInfo(users_input_song, TopSongs)
+            song_info = getInfo(users_input_song, data)
             # for m in song_info:
-            #     print(m)
+            prediction = model.predict(song_info)
+            print('LOOK HERE (from bb) -->', prediction)
+
             return render_template('index.html', prediction='ITS A HIT!')
         else:
             features = get_features(users_input_song)
             new_pt = makeTestPoint(features)
-            print(new_pt)
             prediction = model.predict(new_pt)
 
             print('LOOK HERE -->', prediction)

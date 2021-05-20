@@ -29,15 +29,18 @@ def getInfo(song, SongList):
                 # ... create a dictionary of the row
                 return_entry = {k: row[k] for k in row if k not in ['song', 'performer', 'id', 'hitTF']}
     # create a df out of the return_entry dict
-    REdf = pd.DataFrame(return_entry)
+    REdf = pd.DataFrame(return_entry, [0])
     # change cols order
     REdf = REdf[["chart_position", "previous_position", "peak", "weeks_on_chart", "danceability", 
         "energy", "key", "loudness", "mode", "speechiness", "acousticness", "instrumentalness", 
         "liveness", "valence", "tempo", "duratin_ms", "time_signature"]]
+
+    REdf = REdf.select_dtypes(['int', 'float']).values
+    print(REdf)
     # load a trained scaler
     scaler = joblib.load('models/scaler.gz')    
     # transform the data based on the scaler
-    X = scaler.transform(data)
+    X = scaler.transform(REdf)
 
     # return the processed array
     return X
@@ -55,7 +58,7 @@ def makeTestPoint(features):
        'time_signature']]
 
     data = data.select_dtypes(['int', 'float']).values
-    print(data)
+    
     scaler = joblib.load('models/scaler.gz')    
     X = scaler.transform(data)
 
