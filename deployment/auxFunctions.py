@@ -46,7 +46,7 @@ def getInfo(song, SongList):
     return X
                 
 
-def makeTestPoint(features):
+def makeNewPoint(features):
     
     data = pd.DataFrame(features, [0])
     data = data.assign(column_new_1=0.0, column_new_2=0.0, column_new_3=0.0, column_new_4=0.0)
