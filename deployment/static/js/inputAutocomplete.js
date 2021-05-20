@@ -124,9 +124,11 @@ document.addEventListener("click", function (e) {
 
 document.addEventListener("keypress", function(e) {
   if (e.key === 'Enter') {
+    e.preventDefault();
     console.log('enter key was pressed somewhere on the page')
     externalValue = document.getElementById("myInput").value;
     console.log(externalValue)
+    document.querySelector('form').submit();
   }
 });
 
