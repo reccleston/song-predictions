@@ -24,7 +24,7 @@ def getInfo(song, SongList):
         # print('inside for loop')
         for k in row.keys():
             if row[k] == song:
-                return_entry = {k: row[k] for k in row if k not in ['song']}
+                return_entry = {k: row[k] for k in row if k not in ['song', 'performer', 'id', 'hitTF']}
                 # print(row)
                 # print(return_entry)
                 return return_entry
