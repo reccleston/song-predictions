@@ -7,7 +7,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, inspect
 import pickle
-from auxFunctions import makeTestPoint, get_features, getInfo
+from auxFunctions import *
 from flask import Flask, jsonify, render_template, request
 
 
@@ -103,6 +103,7 @@ def predict():
 
             return render_template('index.html', prediction='ITS A HIT!')
         else:
+            print(users_input_song)
             features = get_features(users_input_song)
             new_pt = makeTestPoint(features)
             prediction = model.predict(new_pt)
