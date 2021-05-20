@@ -15,6 +15,7 @@ spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(cl
 def get_features(song):
     return spotify.audio_features(spotify.search(q=song, limit=1)['tracks']['items'][0]['uri'])[0]
 
+<<<<<<< HEAD
 # def getInfo(song, SongList):
 #     print('this function runs: ', '\n', song)
 #     for m in SongList:
@@ -26,6 +27,20 @@ def get_features(song):
 #             print('MATCHED @%@%@%@%@%@%@')
 #             return row[2:]
 #     # fromt he billboard 
+=======
+
+
+# extract info from billboard list
+def getInfo(song, SongList):
+    for row in SongList:
+        # print('inside for loop')
+        for k in row.keys():
+            if row[k] == song:
+                return_entry = {k: row[k] for k in row if k not in ['song']}
+                # print(row)
+                # print(return_entry)
+                return return_entry
+>>>>>>> 8d86e1fe0add30a98caf479a9b8c538cb8ceed38
 
 def makeTestPoint(features):
     data = pd.DataFrame(features, [0]).select_dtypes(['int', 'float']).values

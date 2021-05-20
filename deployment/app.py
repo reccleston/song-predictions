@@ -42,7 +42,36 @@ column_names = connection.execute("""SELECT *
 # # PRETTIFY FRONT PIECE 
 
 song_list = []
+data = []
 
+for row in TopSongs:
+    my_dict = {
+        "song":row[0],
+        "performer": row[1],
+        "chart_position": row[2],
+        "previous_position": row[3],
+        "peak": row[4],
+        "weeks_on_chart": row[5],
+        "hitTF": row[6],
+        "id": row[7],
+        "danceability": row[8],
+        "energy": row[9],
+        "key": row[10],
+        "loudness": row[11],
+        "mode": row[12],
+        "speechiness": row[13],
+        "acousticness": row[14],
+        "instrumentalness": row[15],
+        "liveness": row[16],
+        "valence": row[17],
+        "tempo": row[18],
+        "duratin_ms": row[19],
+        "time_signature": row[20]
+    }
+    data.append(my_dict)
+    song_titles.append(row[0])
+
+data.append({'columns': ["song", "performer", "chart_position", "previous_position", "peak", "weeks_on_chart", "hitTF", "id", "danceability", "energy", "key", "loudness", "mode", "speechiness", "acousticness", "instrumentalness", "liveness", "valence", "tempo", "duratin_ms", "time_signature"]})
 
 @app.route('/')
 def home():
@@ -65,7 +94,7 @@ def predict():
         if users_input_song in song_list:
             # get other cols of data to for model 
             # song_info = connection.execute("""SELECT * EXCEPT song, performer, id FROM songs;""")
-            song_info = getInfo(users_input_song, TopSongs)
+            song_info = getInfo(users_input_song, data)
             # for m in song_info:
             #     print(m)
             return render_template('index.html', prediction='ITS A HIT!')

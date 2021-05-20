@@ -1,8 +1,7 @@
-
-
 songs = [];
 
 d3.json('/billboard_songs').then(titles => titles.forEach(song => songs.push(song)));
+
 // var trial = '';
 var externalValue;
 function autocomplete(inp, arr) {
@@ -134,7 +133,7 @@ document.addEventListener("keypress", function(e) {
 
 };
 // 
-d3.select('#btnInput').on('click', function(e) {
+d3.select('#btnInput').on('click', function(event) {
   event.preventDefault();
   console.log('button was pressed')
   externalValue = document.getElementById("myInput").value;
