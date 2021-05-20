@@ -17,17 +17,16 @@ def get_features(song):
 
 
 
-# def getInfo(song, SongList):
-#     print('this function runs: ', '\n', song)
-#     for m in SongList:
-#         print(m[0])
-#     for row in SongList:
-#         print('we made it')
-#         print(row)
-#         if row[0] == song:
-#             print('MATCHED @%@%@%@%@%@%@')
-#             return row[2:]
-#     # fromt he billboard 
+# extract info from billboard list
+def getInfo(song, SongList):
+    for row in SongList:
+        # print('inside for loop')
+        for k in row.keys():
+            if row[k] == song:
+                return_entry = {k: row[k] for k in row if k not in ['song']}
+                # print(row)
+                # print(return_entry)
+                return return_entry
 
 def makeTestPoint(features):
     data = pd.DataFrame(features, [0]).select_dtypes(['int', 'float']).values
