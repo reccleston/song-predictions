@@ -18,16 +18,30 @@ def get_features(song):
 
 # extract info from billboard list
 def getInfo(song, SongList):
-    print('into massage data')
-    print(song)
+    # create empty dict
+    return_entry = {}
+    # iterate through song list dict
     for row in SongList:
-        # print('inside for loop')
+        # iterate through keys in a row
         for k in row.keys():
+            # if the song matches row['song']...
             if row[k] == song:
+                # ... create a dictionary of the row
                 return_entry = {k: row[k] for k in row if k not in ['song', 'performer', 'id', 'hitTF']}
-                # print(row)
-                # print(return_entry)
-                return return_entry
+    # create a df out of the return_entry dict
+    REdf = pd.DataFrame(return_entry)
+    # change cols order
+    REdf = REdf[["chart_position", "previous_position", "peak", "weeks_on_chart", "danceability", 
+        "energy", "key", "loudness", "mode", "speechiness", "acousticness", "instrumentalness", 
+        "liveness", "valence", "tempo", "duratin_ms", "time_signature"]]
+    # load a trained scaler
+    scaler = joblib.load('models/scaler.gz')    
+    # transform the data based on the scaler
+    X = scaler.transform(data)
+
+    # return the processed array
+    return X
+                
 
 def makeTestPoint(features):
     
