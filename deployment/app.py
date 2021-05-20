@@ -101,7 +101,11 @@ def predict():
             return render_template('index.html', prediction='ITS A HIT!')
         else:
             features = get_features(users_input_song)
-            prediction_pt = makeTestPoint(features)
+            new_pt = makeTestPoint(features)
+            print(new_pt)
+            prediction = model.predict(new_pt)
+
+            print('LOOK HERE -->', prediction)
 
     
     # massage 

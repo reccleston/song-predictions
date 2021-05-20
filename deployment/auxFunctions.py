@@ -45,7 +45,6 @@ def makeTestPoint(features):
     scaler = joblib.load('models/scaler.gz')    
     X = scaler.transform(data)
 
-    print('\n', X, '\n')
     # fill in the blank not on billboard hits 
-    return 0
+    return X
 
