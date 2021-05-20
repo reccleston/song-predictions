@@ -125,13 +125,12 @@ document.addEventListener("click", function (e) {
 document.addEventListener("keypress", function(e) {
   if (e.key === 'Enter') {
     e.preventDefault();
-    console.log('enter key was pressed somewhere on the page')
+    console.log('enter key was pressed somewhere on the page (inside funct')
     externalValue = document.getElementById("myInput").value;
     console.log(externalValue)
     document.querySelector('form').submit();
   }
 });
-
 
 };
 // 
@@ -142,3 +141,20 @@ d3.select('#btnInput').on('click', function(event) {
   console.log(externalValue);
 });
 
+
+// const input = document.querySelector('input');
+// input.addEventListener('change', alertChange);
+
+// function alertChange(e) {
+//   hitDiv = d3.select('#hitDiv');
+//   hitText = hitDiv.select('#hitAlert').node().textContent;
+//   if (hitText == 'Your song choice is likely to be a hit!') {
+//     hitDiv.style('visibility', 'visible');
+//     hitDiv.classed('alert-success', true);
+//   } else if (hitText == 'Your song choice is likely to not be a hit!') {
+//     hitDiv.style('visibility', 'visible');
+//     hitDiv.classed('alert-error', true);
+//   } else {
+//     hitDiv.style('visibility', 'hidden');
+//   } ;
+// };

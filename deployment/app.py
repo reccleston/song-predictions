@@ -101,25 +101,25 @@ def predict():
             prediction = model.predict(song_info)
             print('LOOK HERE (from bb) -->', prediction)
 
-            return render_template('index.html', prediction='ITS A HIT!')
+            if prediction == 0:
+                predictText = 'Your song choice is likely to not be a hit!'
+                return render_template('index.html', text = predictText)
+            elif prediction == 1:
+                predictText = 'Your song choice is likely to be a hit!'
+                return render_template('index.html', text = predictText)
         else:
             print(users_input_song)
             features = get_features(users_input_song)
             new_pt = makeNewPoint(features)
             prediction = model.predict(new_pt)
 
-            print('LOOK HERE -->', prediction)
+            if prediction == 0:
+                predictText = 'Your song choice is likely to not be a hit!'
+                return render_template('index.html', text = predictText)
+            elif prediction == 1:
+                predictText = 'Your song choice is likely to be a hit!'
+                return render_template('index.html', text = predictText)
 
-    
-    # massage 
-
-    # predict
-    return render_template('index.html', prediction=pred)
-
-
-# check if song is already in the top list 
-# if not call spotify api to gather the songs audio features 
-#     then massage this new data point into the shape needed to be run through the model 
 
 if __name__ == "__main__":
     app.run(debug=True)

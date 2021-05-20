@@ -21,6 +21,7 @@
     <!-- Custom styles for this template-->
     <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/inputStyle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hitAlert.css') }}">
     
     
 </head>
@@ -63,6 +64,11 @@
             <!-- <buttoninp type="submit" ></button>           -->
             <input type="submit" class="btn" formaction="{{ url_for('predict') }}" method="post">
         </form>
+
+        <div class="alert alert-error alert-block" id='hitDiv'>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h4 id='hitAlert'>{{ text }}</h4>
+        </div>
     </div>
 
 
