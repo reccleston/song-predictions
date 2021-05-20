@@ -81,9 +81,9 @@ def home():
 @app.route('/billboard_songs')
 def songs():
     for song in TopSongs:
-        song_list.append(song[0])
+        song_titles.append(song[0])
 
-    return jsonify(song_list)
+    return jsonify(song_titles)
 
 @app.route('/predict', methods=['POST'])
 def predict():
