@@ -1,14 +1,14 @@
 window.onload = (event) => {
     hitDiv = d3.select('#hitDiv');
     hitText = hitDiv.select('#hitAlert').node().textContent;
-    if (hitText == 'Your song choice is likely to be a hit!') {
+    if (hitText.substr(-19) == 'likely to be a hit!') {
         console.log('its a hit')
         hitDiv.classed('invisible', false)
         hitDiv.classed('alert-success', true)
         hitDiv.classed('alert-danger', false)
     //   hitDiv.style('visibility', 'visible');
     //   hitDiv.classed('alert-success', true);
-    } else if (hitText == 'Your song choice is likely to not be a hit!') {
+    } else if (hitText.substr(-23) == 'likely to not be a hit!') {
         console.log('not a hit')
         hitDiv.classed('invisible', false)
         hitDiv.classed('alert-success', false)

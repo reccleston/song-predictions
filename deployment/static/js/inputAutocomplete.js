@@ -140,21 +140,3 @@ d3.select('#btnInput').on('click', function(event) {
   externalValue = document.getElementById("myInput").value;
   console.log(externalValue);
 });
-
-
-// const input = document.querySelector('input');
-// input.addEventListener('change', alertChange);
-
-// function alertChange(e) {
-//   hitDiv = d3.select('#hitDiv');
-//   hitText = hitDiv.select('#hitAlert').node().textContent;
-//   if (hitText == 'Your song choice is likely to be a hit!') {
-//     hitDiv.style('visibility', 'visible');
-//     hitDiv.classed('alert-success', true);
-//   } else if (hitText == 'Your song choice is likely to not be a hit!') {
-//     hitDiv.style('visibility', 'visible');
-//     hitDiv.classed('alert-error', true);
-//   } else {
-//     hitDiv.style('visibility', 'hidden');
-//   } ;
-// };
