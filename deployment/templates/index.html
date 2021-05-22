@@ -65,7 +65,7 @@
             <input type="submit" class="btn" formaction="{{ url_for('predict') }}" method="post">
         </form>
 
-        <div class="alert alert-error alert-block" id='hitDiv'>
+        <div class="alert alert-block invisible" id='hitDiv'>
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <h4 id='hitAlert'>{{ text }}</h4>
         </div>
@@ -103,7 +103,10 @@
                 
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>   
+    <!-- script for autocomplete file -->
     <script src="{{ url_for('static', filename='js/inputAutocomplete.js') }}"></script>
+    <!-- script for song prediction display file -->
+    <script src="{{ url_for('static', filename='js/displayResult.js') }}"></script>
 
     <script>
         autocomplete(document.getElementById("myInput"), songs);
