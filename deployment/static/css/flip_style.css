@@ -1,7 +1,7 @@
 #box-proj-info, #box-terms {
     margin-bottom: 20px;
 }
-#proj-info-front {
+.proj-info-front {
     /* padding: 10px; */
     position: absolute;
     top: 0;
@@ -9,7 +9,7 @@
     width: inherit;
     height: inherit;
     text-align: center;
-    background-image: url('../img/speakerElvis.jpg');
+    
     background-repeat: no-repeat;
     background-size: cover;
     background-position-x: center;
@@ -20,6 +20,16 @@
     justify-content: center;    /* center items vertically, in this case */
     align-items: center; 
 }
+
+#frontA {
+    background-image: url('../img/concert.jpg');
+}
+
+#frontB {
+    background-image: url('../img/speakerElvis.jpg');
+}
+
+
 
 #proj-info-back {
     padding: 20px;
