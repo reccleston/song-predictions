@@ -11,3 +11,13 @@
 .otherPage {
     color: ghostwhite;
 }
+
+/* background page colour */
+body {
+    background-color: RGB(252, 252, 252);
+}
+
+/* text box background */
+.form-control {
+    background-color: white !important;
+}
