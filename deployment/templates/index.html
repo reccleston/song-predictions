@@ -20,13 +20,16 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pageElements.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/inputStyle.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/hitAlert.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/flip_style.css') }}">
     
     
 </head>
 
 <body id="page-top">
+    <!-- navbar -->
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -39,36 +42,67 @@
     </nav>
     <!-- Page Wrapper -->
     <div class='container'>
-        <!-- <div class="input-group">
-            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-              aria-describedby="search-addon" />
-            <button type="button" class="btn btn-outline-primary">search</button>
-        </div> -->
-        <br>
-        <!-- <form action="{{ url_for('predict')}}"method="post">
-            <input type="text" name="rate" placeholder="rate" required="required" />
-            <input type="text" name="sales in first month" placeholder="sales in first month" required="required" />
-            <input type="text" name="sales in second month" placeholder="sales in second month" required="required" />
-            <button type="submit" class="btn btn-primary btn-block btn-large">Predict sales in third month</button>
-        </form> -->
-
-        <!-- <form autocomplete="off" action="/action_page.php"> -->
-        <form action="{{ url_for('predict')}}" method="post">
-
-            <div class="autocomplete" style="width:300px;">
-              <input class="form-control rounded" placeholder="Song - Artist" aria-label="Search" 
-              id="myInput" type="text" name="songTitle">
-              <!-- <input class="form-control rounded" placeholder="Search" aria-label="Search" 
-              id="myInput" type="submit" name="myCountry"> -->
+        <!-- searchbar and button section -->
+        <div class='row topBuffer'>
+            <div class='col-lg-4'></div>
+            <!-- searchbar -->
+            <div class='col-lg-6 col-xs-12'>
+                <form action="{{ url_for('predict')}}" method="post">
+                    <div class="autocomplete" style="width:300px;">
+                      <input class="form-control rounded" placeholder="Song - Artist" aria-label="Search" 
+                      id="myInput" type="text" name="songTitle">
+                    </div>
+                    <!-- submit button -->
+                    <input type="submit" class="btn" formaction="{{ url_for('predict') }}" method="post">
+                </form>
             </div>
-            <!-- <buttoninp type="submit" ></button>           -->
-            <input type="submit" class="btn" formaction="{{ url_for('predict') }}" method="post">
-        </form>
-
-        <div class="alert alert-block invisible" id='hitDiv'>
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <h4 id='hitAlert'>{{ text }}</h4>
         </div>
+        <!-- hit/not hit notification -->
+        <div class='row topBuffer'>
+            <div class='col-lg-3'></div>
+            <div class='col-lg-6 col-xs-12'>
+                <div class="alert alert-block invisible" id='hitDiv' role='alert'>
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <h4 id='hitAlert'>{{ text }}</h4>
+                </div>
+            </div>
+        </div>
+        <!-- project info flip box -->
+        <div class='row topBuffer infoBox'>
+            <div class='col-md-12'>
+                <div class='card' id="box-proj-info">
+                    <div class="front justify-content-center" id='proj-info-front'>
+                        <h2 id='front-pi-text'><strong>Prediction Information</strong></h2>
+                        <h4 id='hidden-text'>Click Me!</h4>
+                    </div>
+                    <div class="back" id='proj-info-back'>
+                        <h5><strong>Directions</strong></h5>
+                        <ul>
+                            <li class='back-pi-box-text'>Use the search bar below to choose a song to run through our algorithm! It will predict whether this song will be 'a hit' next week, as defined as appearing on the Billboard Top 100 chart the following week.</p>
+                            <li class='back-pi-box-text'>The autofill text comes from songs in our Billboard database...but if your song doesn't appear in the lockdown, never fear! Type in the name of the song, and information on it will be retrieved from Spotify!</p>
+                        </ul>
+                        <h5><strong>Behind the webpage:</strong></h5>
+                        <ul>
+                            <li class='back-pi-box-text'>Underlying this prediction is a linear regression algorithm</li>
+                            <li class='back-pi-box-text'>It was trained on Spotify song characteristics as seen on our Top Tracks Playspace data page, as well as weekly Billboard history data from 2018-2021.</li>
+                            <li class='back-pi-box-text'>Unexpectedly, we discovered that the Spotify song characteristics didn't have much to do with the song success.</li>
+                            <li class='back-pi-box-text'>In retrospect, it seems obvious that the strongest predictor of a song appearing on the Billboard charts next week...was appearing on it this week.</li>
+                            <li class='back-pi-box-text'>See our <a href="https://github.com/reccleston/song-predictions/tree/d169ef2b55efc81dd220f561f4f6f488322479df" target='_blank'>GitHub page</a> for more information.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Angeli, Jini Hassan, Ryan Eccleston-Murdock, Wasif Khan, and Sarah D. Hood
+                        2021</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->    
     </div>
 
 
@@ -85,8 +119,6 @@
 
 
     <!-- Page level plugins -->
-
-
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -107,7 +139,11 @@
     <script src="{{ url_for('static', filename='js/inputAutocomplete.js') }}"></script>
     <!-- script for song prediction display file -->
     <script src="{{ url_for('static', filename='js/displayResult.js') }}"></script>
-
+    <!-- scripts for flip file -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+    <script src="{{ url_for('static', filename='js/flip.js') }}"></script>
+    <!-- autocomplete script -->
     <script>
         autocomplete(document.getElementById("myInput"), songs);
     </script>

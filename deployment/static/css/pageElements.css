@@ -1,0 +1,8 @@
+/* normal margin */
+.topBuffer {
+    margin-top: 30px;
+}
+/* margin top for when the alert appears */
+.topEdit {
+    margin-top: 10px;
+}

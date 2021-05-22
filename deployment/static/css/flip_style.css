@@ -9,7 +9,7 @@
     width: inherit;
     height: inherit;
     text-align: center;
-    background-image: url('../img/concert.jpg');
+    background-image: url('../img/speakerElvis.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position-x: center;
@@ -33,6 +33,7 @@
 #front-pi-text {
     color:white;
     text-align: center;
+    -webkit-text-stroke: 2px black;
 }
 
 .back-pi-box-text {

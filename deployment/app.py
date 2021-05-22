@@ -11,40 +11,34 @@ from auxFunctions import *
 from flask import Flask, jsonify, render_template, request
 
 
-
+# postgres credentials
 load_dotenv('.env')
 POSTGRES_ID = os.getenv('POSTGRES_ID')
 POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD')
 
+# connect to DB
+# connection string
 engine = create_engine(f'{POSTGRES_ID}://{POSTGRES_PASSWORD}:postgres@localhost:5432/billboard_songs', echo=False)
 
 Base = automap_base()
 Base.prepare(engine, reflect=True)
-
+# connect to DB
 connection = engine.connect()
 
+# load model
 model = pickle.load(open('models/LogRegW2021.sav','rb'))
 
 app = Flask(__name__)
 
+# query for all songs info
 TopSongs = connection.execute("""SELECT * FROM songs;""")
 
-# column_names = connection.execute("""SELECT *
-#   FROM information_schema.columns
-#  WHERE table_schema = 'public'
-#    AND table_name   = 'songs'
-#      ;""")
-
-# @TODO:
-# # SELECT ALL BUT SONG, ARTIST, ID, COLS FOR MATCHED SONGS TO BE PUT THROUGH
-# # ADDING 0'S TO NEW DATA POINTS 
-# # USING/ APPLIYING MODEL
-# # PRETTIFY FRONT PIECE 
-
+# lists to hold song info from DB
 song_titles = []
 song_list = []
 data = []
 
+# iterating over return from DB and appending to dict
 for row in TopSongs:
     my_dict = {
         "song":row[0],
@@ -74,10 +68,12 @@ for row in TopSongs:
 
 data.append({'columns': ["song", "performer", "chart_position", "previous_position", "peak", "weeks_on_chart", "hitTF", "id", "danceability", "energy", "key", "loudness", "mode", "speechiness", "acousticness", "instrumentalness", "liveness", "valence", "tempo", "duratin_ms", "time_signature"]})
 
+# home route
 @app.route('/')
 def home():
     return render_template('index.html')
-    
+
+# song append route (is this necess?)
 @app.route('/billboard_songs')
 def songs():
     for song in TopSongs:
@@ -85,39 +81,47 @@ def songs():
 
     return jsonify(song_titles)
 
+# prediction route
 @app.route('/predict', methods=['POST'])
 def predict():
     # test_features = get_features()
 
-    pred = np.nan
-    
+    # pred = np.nan
+    predictText = ''
+    # compare user input to song titles
     for users_input_song in request.form.values():
+        # if the input is in the titles
         if users_input_song in song_titles:
             print(users_input_song)
-            # get other cols of data to for model 
-            # song_info = connection.execute("""SELECT * EXCEPT song, performer, id FROM songs;""")
+            # send to getInfo funct to get the data
             song_info = getInfo(users_input_song, data)
-            # for m in song_info:
+            # run the song info through the model
             prediction = model.predict(song_info)
             print('LOOK HERE (from bb) -->', prediction)
-
+            # if the prediction is 'not a hit', send 'no hit' message
             if prediction == 0:
-                predictText = 'Your song choice is likely to not be a hit!'
+                predictText = f'{users_input_song} is likely to not be a hit!'
                 return render_template('index.html', text = predictText)
+            # if prediction is 'hit', send 'hit' message
             elif prediction == 1:
-                predictText = 'Your song choice is likely to be a hit!'
+                predictText = f'{users_input_song} is likely to be a hit!'
                 return render_template('index.html', text = predictText)
+        # if song is not in titles
         else:
             print(users_input_song)
+            # send to get_features funct with Spotify API
             features = get_features(users_input_song)
+            # send to makeNewPoint funct to append zeros
             new_pt = makeNewPoint(features)
+            # run the song through the model
             prediction = model.predict(new_pt)
-
+            # if the prediction is 'not a hit', send 'no hit' message
             if prediction == 0:
-                predictText = 'Your song choice is likely to not be a hit!'
+                predictText = f'{users_input_song} is likely to not be a hit!'
                 return render_template('index.html', text = predictText)
+            # if prediction is 'hit', send 'hit' message
             elif prediction == 1:
-                predictText = 'Your song choice is likely to be a hit!'
+                predictText = f'{users_input_song} is likely to be a hit!'
                 return render_template('index.html', text = predictText)
 
 
