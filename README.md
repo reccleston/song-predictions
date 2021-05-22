@@ -56,7 +56,7 @@ Continuing off our [last project](https://github.com/reccleston/music-project) ,
 *Fig. 1: Top Songs Barchart showed that Top Danceable Songs were not Hits*
 
 
-![Features](ryan/image.png)
+![Features](data/feature_importanceW2021.png)
 *Fig. 2: Feature Importance Barchart showed stronger importance in Billboard Attributes*
 
 This led us to pivot our inputs for our machine learning models to include more insightful information like the attributes listed in the [Billboard dataset](BB_Final.csv). Some examples of these new attributes are:
