@@ -80,7 +80,7 @@ def tracks():
 @app.route('/sunburstbubble')
 def sunbubblevalues():
     result = connection.execute("""SELECT * FROM data_cleaned;""")
-    print(result)
+    # print(result)
     data = []
     for row in result:
         my_dict = {
@@ -102,7 +102,7 @@ def sunbubblevalues():
             "pop": row[15]
         }
         data.append(my_dict)
-        print(row)
+        # print(row)
     data.append({'columns': ["title", "artist", "genre", "genre_num", "subgenre", "year", "bpm", "nrgy", "dnce", "dB", "live", "val", "dur", "acous", "spch", "pop"]})
     return(jsonify(data))
 
@@ -118,7 +118,7 @@ def heatmapvalues():
             "vals": row[2]
         }
         data.append(my_dict)
-        print(row)
+        # print(row)
     return(jsonify(data))
 
 # route to display bar graph
@@ -135,7 +135,7 @@ def barvalues():
             "pop": row[4]
         }
         data.append(my_dict)
-        print(row)
+        # print(row)
     return(jsonify(data))
 
 # route to create a songs list - might not be necessary 
@@ -153,11 +153,11 @@ def predict():
     predictText = ''
     for users_input_song in request.form.values():
         if users_input_song in song_titles:
-            print(users_input_song)
+            # print(users_input_song)
             song_info = getInfo(users_input_song, bbData)
             # for m in song_info:
             prediction = model.predict(song_info)
-            print('LOOK HERE (from bb) -->', prediction)
+            # print('LOOK HERE (from bb) -->', prediction)
             if prediction == 0:
                 predictText = f'{users_input_song} is likely to not be a hit!'
                 return render_template('index.html', text = predictText)
@@ -166,12 +166,12 @@ def predict():
                 return render_template('index.html', text = predictText)
 
         else:
-            print(users_input_song)
+            # print(users_input_song)
             features = get_features(users_input_song)
-            new_pt = makeTestPoint(features)
+            new_pt = makeNewPoint(features)
             prediction = model.predict(new_pt)
 
-            print('LOOK HERE -->', prediction)
+            # print('LOOK HERE -->', prediction)
 
             if prediction == 0:
                 predictText = f'{users_input_song} is likely to not be a hit!'
