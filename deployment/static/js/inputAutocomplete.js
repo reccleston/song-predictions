@@ -125,13 +125,12 @@ document.addEventListener("click", function (e) {
 document.addEventListener("keypress", function(e) {
   if (e.key === 'Enter') {
     e.preventDefault();
-    console.log('enter key was pressed somewhere on the page')
+    console.log('enter key was pressed somewhere on the page (inside funct')
     externalValue = document.getElementById("myInput").value;
     console.log(externalValue)
     document.querySelector('form').submit();
   }
 });
-
 
 };
 // 
@@ -141,4 +140,3 @@ d3.select('#btnInput').on('click', function(event) {
   externalValue = document.getElementById("myInput").value;
   console.log(externalValue);
 });
-
