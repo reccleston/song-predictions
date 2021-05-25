@@ -26,6 +26,8 @@ create table dates (
     chart_week date
 );
 
+ALTER TABLE dates ADD PRIMARY KEY (chart_week);
+
 create table latest_data (
     song varchar,
     performer varchar,
@@ -49,3 +51,5 @@ create table latest_data (
     duratin_ms float,
     time_signature float
 );
+
+ALTER TABLE latest_data ADD PRIMARY KEY (id);
