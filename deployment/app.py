@@ -164,7 +164,7 @@ def predict():
                 return render_template('index.html', text = predictText)
             elif prediction == 1:
                 predictText = f'{users_input_song} is likely to be a hit!'
-                return render_template('index.html', text = predictText)
+                return render_template('index.html', text = predictText)            
 
         else:
             # print(users_input_song)
@@ -173,7 +173,7 @@ def predict():
 
             print('there==>', new_pt)
             prediction = model.predict(new_pt)
-            drake = [[5.60000000e-01, 0.00000000e+00, 0, 2.17391304e-02,
+            drake = [[5.60000000e-01, 0.00000000e+00, 5.60000000e-01, 2.17391304e-02,
         7.13993871e-01, 6.86993802e-01, 6.36363636e-01, 9.17823175e-01,
         0.00000000e+00, 1.10994764e-01, 3.09236948e-01, 3.66666667e-05,
         1.22469636e-01, 5.10747185e-01, 4.19553895e-01, 4.59569349e-02,
@@ -190,4 +190,4 @@ def predict():
                 return render_template('index.html', text = predictText)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5000)

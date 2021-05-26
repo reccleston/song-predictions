@@ -6,6 +6,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import pandas as pd 
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
+from flask import render_template
 
 load_dotenv('.env')
 SPOTIFY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
@@ -64,6 +65,14 @@ def makeNewPoint(features):
 
     # fill in the blank not on billboard hits 
     return X
+
+def predictionText(prediction, users_input_song):
+    if prediction == 0:
+        predictText = f'{users_input_song} is likely to not be a hit!'
+        return render_template('index.html', text = predictText)
+    elif prediction == 1:
+        predictText = f'{users_input_song} is likely to be a hit!'
+        return render_template('index.html', text = predictText)
 
 
 
