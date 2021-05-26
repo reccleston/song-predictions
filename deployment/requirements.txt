@@ -1,5 +1,5 @@
 sqlalchemy==1.4.15
-pickle==3.8
+pickle==4.0
 Flask==2.0.1
 spotipy==2.18.0
 joblib==1.0.1
