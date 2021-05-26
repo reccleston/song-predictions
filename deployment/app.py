@@ -26,7 +26,7 @@ Base.prepare(engine, reflect=True)
 connection = engine.connect()
 
 # load model
-model = pickle.load(open('models/LogRegW2021.sav','rb'))
+model = pickle.load(open('models/LogReg.sav','rb'))
 
 app = Flask(__name__)
 
@@ -156,6 +156,7 @@ def predict():
             # print(users_input_song)
             song_info = getInfo(users_input_song, bbData)
             # for m in song_info:
+            print('here-->', song_info)
             prediction = model.predict(song_info)
             # print('LOOK HERE (from bb) -->', prediction)
             if prediction == 0:
@@ -169,8 +170,16 @@ def predict():
             # print(users_input_song)
             features = get_features(users_input_song)
             new_pt = makeNewPoint(features)
-            prediction = model.predict(new_pt)
 
+            print('there==>', new_pt)
+            prediction = model.predict(new_pt)
+            drake = [[5.60000000e-01, 0.00000000e+00, 0, 2.17391304e-02,
+        7.13993871e-01, 6.86993802e-01, 6.36363636e-01, 9.17823175e-01,
+        0.00000000e+00, 1.10994764e-01, 3.09236948e-01, 3.66666667e-05,
+        1.22469636e-01, 5.10747185e-01, 4.19553895e-01, 4.59569349e-02,
+        8.00000000e-01]]
+            print(drake)
+            print('pred for drake song', model.predict(drake))
             # print('LOOK HERE -->', prediction)
 
             if prediction == 0:

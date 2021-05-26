@@ -47,9 +47,9 @@ def getInfo(song, SongList):
                 
 
 def makeNewPoint(features):
-    
+    # make assumption that only songs that are on the charts will be chosen by client 
     data = pd.DataFrame(features, [0])
-    data = data.assign(column_new_1=0.0, column_new_2=0.0, column_new_3=0.0, column_new_4=0.0)
+    data = data.assign(column_new_1=10.0, column_new_2=1.0, column_new_3=1.0, column_new_4=30.0)
     
     data = data[['column_new_1', 'column_new_2', 'column_new_3',
        'column_new_4', 'danceability', 'energy', 'key', 'loudness', 'mode', 'speechiness',
